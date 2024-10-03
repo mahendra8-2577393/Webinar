@@ -1,8 +1,4 @@
-/**
- * Gaurav Tiwari
- * 6376013956
- * Api response body is defined here
- */
+
 
 class APIResponse {
   constructor(statusCode, data, message = "Success") {

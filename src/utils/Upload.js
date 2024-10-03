@@ -1,8 +1,4 @@
-/**
- * Gaurav Tiwari
- * 6376013956
- * File saving filtering logic is here
- */
+
 const multer = require("multer");
 const fs = require("fs");
 const path = require("path");

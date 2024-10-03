@@ -1,8 +1,4 @@
-/**
- * Gaurav Tiwari
- * 6376013956
- * Api error request is defined here
- */
+
 
 class ApiError extends Error {
   constructor(

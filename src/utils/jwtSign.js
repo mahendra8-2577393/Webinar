@@ -1,7 +1,3 @@
-/**
- * Gaurav Tiwari
- * Jwt logic is here
- */
 
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
