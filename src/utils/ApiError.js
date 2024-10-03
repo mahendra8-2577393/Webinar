@@ -1,0 +1,29 @@
+/**
+ * Gaurav Tiwari
+ * 6376013956
+ * Api error request is defined here
+ */
+
+class ApiError extends Error {
+  constructor(
+    statusCode,
+    message = "something went wrong",
+    errors = [],
+    stack = ""
+  ) {
+    super(message);
+    this.statusCode = statusCode;
+    this.data = null;
+    this.message = message;
+    this.errors = errors;
+    this.stack = stack;
+
+    if (stack) {
+      this.stack = stack;
+    } else {
+      Error.captureStackTrace(this, this.constructor);
+    }
+  }
+}
+
+module.exports = ApiError;

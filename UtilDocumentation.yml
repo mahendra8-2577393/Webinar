@@ -1,0 +1,219 @@
+Util Documentation
+Version: 1.0.0
+
+Utils-
+
+Overview
+This document provides a detailed description of the API endpoints available in the application. It includes explanations of each endpoint, the data format required, possible error codes, and success responses.
+
+API Endpoints
+1. Get All Conferences
+Endpoint: GET /getAllConfrences
+Description: Retrieves a list of all conferences.
+Request:
+No parameters required.
+Response:
+Success (200): Returns an array of conference objects.
+json
+Copy code
+{
+  "status": 200,
+  "data": [
+    {
+      "id": "string",
+      "title": "string",
+      "modeOfConference": "string",
+      "conferenceStatus": "string"
+      // other conference fields
+    }
+  ]
+}
+Error (500): "An error occurred" with detailed error message.
+json
+Copy code
+{
+  "status": 500,
+  "message": "An error occurred",
+  "details": ["error message"]
+}
+2. Get Conference by ID
+Endpoint: GET /getConfrencesId/:confrenceId
+Description: Retrieves a conference by its ID.
+Request:
+Parameters:
+confrenceId (URL parameter): The ID of the conference to retrieve.
+Response:
+Success (200): Returns the conference object.
+json
+Copy code
+{
+  "status": 200,
+  "data": {
+    "id": "string",
+    "title": "string",
+    "modeOfConference": "string",
+    "conferenceStatus": "string"
+    // other conference fields
+  }
+}
+Error (400): "confrenceId is required" or "Invalid confrenceId" with details.
+json
+Copy code
+{
+  "status": 400,
+  "message": "confrenceId is required",
+  "details": ["Missing Parameter"]
+}
+Error (500): "An error occurred" with detailed error message.
+json
+Copy code
+{
+  "status": 500,
+  "message": "An error occurred",
+  "details": ["error message"]
+}
+3. Get Conference by User ID
+Endpoint: POST /getConfrenceByUserId
+Description: Retrieves conferences based on user ID and role.
+Request:
+Body:
+json
+Copy code
+{
+  "userId": "string",
+  "role": "integer"
+}
+Response:
+Success (200): Returns a list of conferences for the given user ID and role.
+json
+Copy code
+{
+  "status": 200,
+  "data": [
+    {
+      "id": "string",
+      "title": "string",
+      "modeOfConference": "string",
+      "conferenceStatus": "string"
+      // other conference fields
+    }
+  ]
+}
+Error (400): "Invalid userId" or "userId and role are required" with details.
+json
+Copy code
+{
+  "status": 400,
+  "message": "Invalid userId",
+  "details": ["Invalid Parameter"]
+}
+Error (500): "An error occurred" with detailed error message.
+json
+Copy code
+{
+  "status": 500,
+  "message": "An error occurred",
+  "details": ["error message"]
+}
+4. Filter Conferences
+Endpoint: POST /filterConfrences
+Description: Filters conferences based on mode and status.
+Request:
+Body:
+json
+Copy code
+{
+  "modeOfConference": ["string"],
+  "conferenceStatus": ["string"]
+}
+Response:
+Success (200): Returns a list of conferences that match the filters.
+json
+Copy code
+{
+  "status": 200,
+  "data": [
+    {
+      "id": "string",
+      "title": "string",
+      "modeOfConference": "string",
+      "conferenceStatus": "string"
+      // other conference fields
+    }
+  ]
+}
+Error (500): "An error occurred" with detailed error message.
+json
+Copy code
+{
+  "status": 500,
+  "message": "An error occurred",
+  "details": ["error message"]
+}
+5. Search Conferences
+Endpoint: POST /searchConfrences
+Description: Searches for conferences by text.
+Request:
+Body:
+json
+Copy code
+{
+  "searchText": "string"
+}
+Response:
+Success (200): Returns a list of conferences matching the search text.
+json
+Copy code
+{
+  "status": 200,
+  "data": [
+    {
+      "id": "string",
+      "title": "string",
+      "modeOfConference": "string",
+      "conferenceStatus": "string"
+      // other conference fields
+    }
+  ]
+}
+Error (400): "searchText is required" with details.
+json
+Copy code
+{
+  "status": 400,
+  "message": "searchText is required",
+  "details": ["Missing Parameter"]
+}
+Error (500): "An error occurred" with detailed error message.
+json
+Copy code
+{
+  "status": 500,
+  "message": "An error occurred",
+  "details": ["error message"]
+}
+Error Codes and Messages
+400 Bad Request: The request could not be understood or was missing required parameters.
+404 Not Found: The requested resource could not be found.
+500 Internal Server Error: An unexpected error occurred on the server.
+Utility Functions
+isValidObjectId(id)
+Description: Checks if the provided ID is a valid MongoDB ObjectId.
+getAllConfrences()
+Description: Retrieves all conferences.
+getConfrencesId(payload)
+Description: Retrieves a conference by its ID.
+getConfrenceByUserId(payload)
+Description: Retrieves conferences based on user ID and role.
+filterConfrences(payload)
+Description: Filters conferences based on mode and status.
+searchConfrences(payload)
+Description: Searches for conferences by text.
+passowrdCompare(payload)
+Description: Compares the password and confirmPassword fields.
+login(payload)
+Description: Authenticates a user and returns a JWT token.
+uploadImage(payload)
+Description: Placeholder for image upload functionality.
+getPaper(paperUrl, res)
+Description: Serves a file based on the provided paper URL.

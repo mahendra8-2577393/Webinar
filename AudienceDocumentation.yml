@@ -1,0 +1,97 @@
+Audience Documentation
+Version: 1.0.0
+
+Overview
+This document provides a detailed description of the API endpoints available for managing audience registrations. It includes explanations of each endpoint, the required data format, possible error codes, and success responses.
+
+API Endpoints
+1. Register Audience
+Endpoint: POST /registerAudience
+Description: Registers a new audience member by providing their details and profile image.
+Request:
+Body:
+json
+Copy code
+{
+  "title": "string",
+  "firstName": "string",
+  "secondName": "string",
+  "lastName": "string",
+  "email": "string",
+  "password": "string",
+  "confirmPassword": "string",
+  "phoneNumber": "string",
+  "gender": "string",
+  "dateOfBirth": "string (ISO date format)",
+  "address": "string",
+  "city": "string",
+  "state": "string",
+  "userRole": "string",
+  "securityQuestion": "string",
+  "profileImage": "file (optional)"
+}
+Response:
+Success (201): Returns the registered audience details and a JWT token.
+json
+Copy code
+{
+  "status": 201,
+  "data": {
+    "id": "string",
+    "title": "string",
+    "name": "string",
+    "email": "string",
+    "phoneNumber": "string",
+    "gender": "string",
+    "dateOfBirth": "string",
+    "address": "string",
+    "city": "string",
+    "state": "string",
+    "userRole": "string",
+    "profileImageUrl": "string"
+  },
+  "token": "string"
+}
+Error (400): Returns a bad request error if required fields are missing or invalid.
+json
+Copy code
+{
+  "status": 400,
+  "message": "Bad Request",
+  "details": ["Please provide a valid payload"]
+}
+Error (500): Returns an internal server error if something goes wrong during registration.
+json
+Copy code
+{
+  "status": 500,
+  "message": "An error occurred",
+  "details": ["error message"]
+}
+Error Codes and Messages
+400 Bad Request: The request could not be understood or was missing required parameters.
+500 Internal Server Error: An unexpected error occurred on the server.
+Utility Functions
+registerAudience(payload)
+Description: Registers a new audience member with the provided details. Hashes the password and saves the audience to the database.
+Parameters:
+payload (object): The audience details including personal information, credentials, and profile image.
+Returns: An APIResponse object containing the status, registered audience details, and a JWT token.
+Throws:
+ApiError for validation errors or unexpected issues during registration.
+passowrdCompare(password, confirmPassword)
+Description: Compares the provided password with the confirmPassword to ensure they match.
+Parameters:
+password (string): The password provided by the user.
+confirmPassword (string): The confirmPassword provided by the user.
+Returns: None
+Throws: ApiError if passwords do not match.
+jwtSign(payload)
+Description: Signs a JWT token with the provided payload.
+Parameters:
+payload (object): The data to be included in the JWT token.
+Returns: A signed JWT token.
+imageUpload
+Description: Middleware for handling file uploads. Processes and stores the uploaded profile image.
+Parameters: None
+Returns: Middleware function for handling file uploads.

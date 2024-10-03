@@ -1,0 +1,219 @@
+Admin Documentation
+
+Version: 1.0.0
+Overview
+This document provides a detailed description of the administrative API endpoints available in the application. It includes explanations of each endpoint, the data format required, possible error codes, and success responses.
+
+API Endpoints
+1. Get All Papers
+Endpoint: GET /getAllPapers
+Description: Retrieves a list of all papers submitted for the conference.
+Request:
+No parameters required.
+Response:
+Success (200): Returns an array of paper objects.
+json
+Copy code
+{
+  "status": 200,
+  "data": [
+    {
+      "id": "string",
+      "title": "string",
+      "author": "string",
+      "status": "string"
+      // other paper fields
+    }
+  ]
+}
+Error (500): "An error occurred" with detailed error message.
+json
+Copy code
+{
+  "status": 500,
+  "message": "An error occurred",
+  "details": ["error message"]
+}
+2. Get Paper by ID
+Endpoint: GET /getPaperById/:paperId
+Description: Retrieves a paper by its ID.
+Request:
+Parameters:
+paperId (URL parameter): The ID of the paper to retrieve.
+Response:
+Success (200): Returns the paper object.
+json
+Copy code
+{
+  "status": 200,
+  "data": {
+    "id": "string",
+    "title": "string",
+    "author": "string",
+    "status": "string"
+    // other paper fields
+  }
+}
+Error (400): "paperId is required" or "Invalid paperId" with details.
+json
+Copy code
+{
+  "status": 400,
+  "message": "paperId is required",
+  "details": ["Missing Parameter"]
+}
+Error (500): "An error occurred" with detailed error message.
+json
+Copy code
+{
+  "status": 500,
+  "message": "An error occurred",
+  "details": ["error message"]
+}
+3. Get Papers by Conference ID
+Endpoint: POST /getPapersByConferenceId
+Description: Retrieves papers based on conference ID.
+Request:
+Body:
+json
+Copy code
+{
+  "conferenceId": "string"
+}
+Response:
+Success (200): Returns a list of papers for the given conference ID.
+json
+Copy code
+{
+  "status": 200,
+  "data": [
+    {
+      "id": "string",
+      "title": "string",
+      "author": "string",
+      "status": "string"
+      // other paper fields
+    }
+  ]
+}
+Error (400): "Invalid conferenceId" or "conferenceId is required" with details.
+json
+Copy code
+{
+  "status": 400,
+  "message": "Invalid conferenceId",
+  "details": ["Invalid Parameter"]
+}
+Error (500): "An error occurred" with detailed error message.
+json
+Copy code
+{
+  "status": 500,
+  "message": "An error occurred",
+  "details": ["error message"]
+}
+4. Filter Papers
+Endpoint: POST /filterPapers
+Description: Filters papers based on status.
+Request:
+Body:
+json
+Copy code
+{
+  "status": ["string"]
+}
+Response:
+Success (200): Returns a list of papers that match the filters.
+json
+Copy code
+{
+  "status": 200,
+  "data": [
+    {
+      "id": "string",
+      "title": "string",
+      "author": "string",
+      "status": "string"
+      // other paper fields
+    }
+  ]
+}
+Error (500): "An error occurred" with detailed error message.
+json
+Copy code
+{
+  "status": 500,
+  "message": "An error occurred",
+  "details": ["error message"]
+}
+5. Search Papers
+Endpoint: POST /searchPapers
+Description: Searches for papers by text.
+Request:
+Body:
+json
+Copy code
+{
+  "searchText": "string"
+}
+Response:
+Success (200): Returns a list of papers matching the search text.
+json
+Copy code
+{
+  "status": 200,
+  "data": [
+    {
+      "id": "string",
+      "title": "string",
+      "author": "string",
+      "status": "string"
+      // other paper fields
+    }
+  ]
+}
+Error (400): "searchText is required" with details.
+json
+Copy code
+{
+  "status": 400,
+  "message": "searchText is required",
+  "details": ["Missing Parameter"]
+}
+Error (500): "An error occurred" with detailed error message.
+json
+Copy code
+{
+  "status": 500,
+  "message": "An error occurred",
+  "details": ["error message"]
+}
+Error Codes and Messages
+400 Bad Request: The request could not be understood or was missing required parameters.
+404 Not Found: The requested resource could not be found.
+500 Internal Server Error: An unexpected error occurred on the server.
+Utility Functions
+isValidObjectId(id)
+
+Description: Checks if the provided ID is a valid MongoDB ObjectId.
+getAllPapers()
+
+Description: Retrieves all papers.
+getPaperById(payload)
+
+Description: Retrieves a paper by its ID.
+getPapersByConferenceId(payload)
+
+Description: Retrieves papers based on conference ID.
+filterPapers(payload)
+
+Description: Filters papers based on status.
+searchPapers(payload)
+
+Description: Searches for papers by text.
+uploadImage(payload)
+
+Description: Placeholder for image upload functionality.
+getPaper(paperUrl, res)
+
+Description: Serves a file based on the provided paper URL.

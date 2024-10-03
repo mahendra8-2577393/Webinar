@@ -1,0 +1,327 @@
+Presneter Documentation
+Version: 1.0.0
+
+Overview
+This document provides a detailed description of the API endpoints available for managing presenter-related operations in the conference system. It includes explanations of each endpoint, the data format required, possible error codes, and success responses.
+
+API Endpoints
+1. Register Presenter
+Endpoint: POST /registerPresenter
+Description: Registers a new presenter with the provided details.
+
+Request:
+
+Body:
+json
+Copy code
+{
+  "title": "string",
+  "firstName": "string",
+  "secondName": "string (optional)",
+  "lastName": "string",
+  "email": "string",
+  "password": "string",
+  "confirmPassword": "string",
+  "phoneNumber": "string",
+  "gender": "string",
+  "dateOfBirth": "string",
+  "address": "string",
+  "city": "string",
+  "state": "string",
+  "userRole": "string",
+  "linkeldnUrl": "string (optional)",
+  "securityQuestion": "string",
+  "profileImageUrl": "string (optional)"
+}
+Response:
+
+Success (200):
+json
+Copy code
+{
+  "status": 200,
+  "data": {
+    "presenterId": "string",
+    "title": "string",
+    "firstName": "string",
+    "secondName": "string",
+    "lastName": "string",
+    "email": "string",
+    "phoneNumber": "string",
+    "gender": "string",
+    "dateOfBirth": "string",
+    "address": "string",
+    "city": "string",
+    "state": "string",
+    "userRole": "string",
+    "linkeldnUrl": "string",
+    "securityQuestion": "string",
+    "profileImageUrl": "string",
+    "jwtToken": "string"
+  }
+}
+Error (400): "Required fields are missing or invalid."
+json
+Copy code
+{
+  "status": 400,
+  "message": "Required fields are missing or invalid.",
+  "details": ["Field details"]
+}
+Error (409): "Presenter with the given email already exists."
+json
+Copy code
+{
+  "status": 409,
+  "message": "Presenter with the given email already exists.",
+  "details": ["Email already in use"]
+}
+Error (500): "An error occurred."
+json
+Copy code
+{
+  "status": 500,
+  "message": "An error occurred",
+  "details": ["error message"]
+}
+2. Save Conference Paper
+Endpoint: POST /saveConferencePaper
+Description: Saves a conference paper for a presenter.
+
+Request:
+
+Body:
+json
+Copy code
+{
+  "conferenceId": "string",
+  "presenterId": "string",
+  "filePath": "string",
+  "originalName": "string"
+}
+Response:
+
+Success (200):
+json
+Copy code
+{
+  "status": 200,
+  "data": {
+    "presenterId": "string",
+    "conferenceId": "string",
+    "filePath": "string"
+  }
+}
+Error (400): "Required fields are missing or invalid."
+json
+Copy code
+{
+  "status": 400,
+  "message": "Required fields are missing or invalid.",
+  "details": ["Field details"]
+}
+Error (500): "An error occurred."
+json
+Copy code
+{
+  "status": 500,
+  "message": "An error occurred",
+  "details": ["error message"]
+}
+3. Update Register Details
+Endpoint: PUT /updateRegisterDetails
+Description: Updates the registration details of a presenter.
+
+Request:
+
+Body:
+json
+Copy code
+{
+  "presenterId": "string",
+  "streamOfPaper": "string",
+  "conferenceId": "string"
+}
+Response:
+
+Success (200):
+json
+Copy code
+{
+  "status": 200,
+  "data": {
+    "presenterId": "string",
+    "streamOfPaper": "string",
+    "conferenceId": "string"
+  }
+}
+Error (400): "Required fields are missing or invalid."
+json
+Copy code
+{
+  "status": 400,
+  "message": "Required fields are missing or invalid.",
+  "details": ["Field details"]
+}
+Error (404): "Presenter not registered for the given conference."
+json
+Copy code
+{
+  "status": 404,
+  "message": "Presenter not registered for the given conference.",
+  "details": ["Presenter details"]
+}
+Error (500): "An error occurred."
+json
+Copy code
+{
+  "status": 500,
+  "message": "An error occurred",
+  "details": ["error message"]
+}
+4. Update Paper
+Endpoint: PUT /updatePaper
+Description: Updates the conference paper for a presenter, including deleting the old paper.
+
+Request:
+
+Body:
+json
+Copy code
+{
+  "conferenceId": "string",
+  "presenterId": "string",
+  "oldPaperUrl": "string",
+  "filePath": "string",
+  "originalName": "string"
+}
+Response:
+
+Success (200):
+json
+Copy code
+{
+  "status": 200,
+  "data": {
+    "presenterId": "string",
+    "conferenceId": "string",
+    "filePath": "string"
+  }
+}
+Error (400): "Required fields are missing or invalid."
+json
+Copy code
+{
+  "status": 400,
+  "message": "Required fields are missing or invalid.",
+  "details": ["Field details"]
+}
+Error (500): "An error occurred."
+json
+Copy code
+{
+  "status": 500,
+  "message": "An error occurred",
+  "details": ["error message"]
+}
+5. Delete Paper
+Endpoint: DELETE /deletePaper
+Description: Deletes a conference paper for a presenter.
+
+Request:
+
+Body:
+json
+Copy code
+{
+  "conferenceId": "string",
+  "presenterId": "string",
+  "paperUrl": "string"
+}
+Response:
+
+Success (200):
+json
+Copy code
+{
+  "status": 200,
+  "data": {
+    "presenterId": "string",
+    "conferenceId": "string",
+    "paperUrl": null
+  }
+}
+Error (400): "Required fields are missing or invalid."
+json
+Copy code
+{
+  "status": 400,
+  "message": "Required fields are missing or invalid.",
+  "details": ["Field details"]
+}
+Error (500): "An error occurred."
+json
+Copy code
+{
+  "status": 500,
+  "message": "An error occurred",
+  "details": ["error message"]
+}
+6. Check Presenter
+Endpoint: POST /checkPresenter
+Description: Checks if a presenter with the given email is already registered.
+
+Request:
+
+Body:
+json
+Copy code
+{
+  "email": "string"
+}
+Response:
+
+Success (200): No response on success.
+
+Error (400): "Email is required or invalid."
+
+json
+Copy code
+{
+  "status": 400,
+  "message": "Email is required or invalid.",
+  "details": ["Missing or invalid email"]
+}
+Error (409): "Presenter with the given email already exists."
+json
+Copy code
+{
+  "status": 409,
+  "message": "Presenter with the given email already exists.",
+  "details": ["Email already in use"]
+}
+Error (500): "An error occurred."
+json
+Copy code
+{
+  "status": 500,
+  "message": "An error occurred",
+  "details": ["error message"]
+}
+Error Codes and Messages
+400 Bad Request: The request could not be understood or was missing required parameters.
+404 Not Found: The requested resource could not be found.
+409 Conflict: The request could not be completed due to a conflict with the current state of the resource.
+500 Internal Server Error: An unexpected error occurred on the server.
+Utility Functions
+isValidObjectId(id)
+Description: Checks if the provided ID is a valid MongoDB ObjectId.
+
+passowrdCompare(payload)
+Description: Compares the password and confirmPassword fields.
+
+uploadImage(payload)
+Description: Placeholder for image upload functionality.
+
+getPaper(paperUrl, res)
+Description: Serves a file based on the provided paper URL.

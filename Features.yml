@@ -1,0 +1,51 @@
+Three kind of roles:
+1 Admin-
+    - view the list of all the users
+      - send presenter and audience detail based on query (based on specific confrence) -->code writen testing left document left
+    - verify the presenters  -->code writen testing left document left
+    - crud of the confrences
+    - delete the users   //optional                                     
+    - download the confrences paper
+    - see the confrences paper
+    - see all the viewers participating
+       - number of offline viewers
+       - number of online viewers
+    - see the confrences paper of a specific user
+    - see the presenter participation
+    - search for confrences
+2 Presenter-
+    -upload the confrences paper
+    - update and delete the confrences paper
+    - see the confrences paper
+    - see the presenter participation
+    - see the list of all the users
+    - register for the confrences and select the stream
+        - only register when they have been verified by the admin
+    - search for confrences
+    - can only download others paper
+3 Audience-
+    - see the presenter participation
+    - no of people who have been registered for the confrences
+    - register for the confrences 
+    - search the presenter
+    - search for confrences
+
+
+Non function requirements::
+    - Audience shouldnt be able to update the confrences paper or the confrence
+    - Admin doesnt have the right to update and delete the confrences paper
+    - try to have a chech on the file uploaded that it should be a pdf --importat and is not malicious -- not so important
+
+
+next pages-
+next week-search page ,confrence overwiew page
+next week-crud for confrences
+next week presnter valid page
+last week about page and developers page,conatct us page
+
+Different ways of read for confrences-
+    -all the confrences
+    -all the confrences of a specific user
+    -categroies of confrences(mode and status)
+    -specific confrences by id
+    -showing all the confrences based on search
