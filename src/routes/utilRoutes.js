@@ -1,8 +1,4 @@
-/**
- * Gaurav Tiwari
- * 6376013956
- * all the util routes are defined here
- */
+
 const express = require("express");
 const router = express.Router();
 

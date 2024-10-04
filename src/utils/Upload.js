@@ -6,6 +6,7 @@ const paperDir = path.join(__dirname, "../../public/uploads/researchPaper");
 const imgDir = path.join(__dirname, "../../public/uploads/profileImage");
 const ApiError = require("../utils/ApiError");
 const santize = require("sanitize-filename");
+console.log(path);
 
 const setUpDirectory = () => {
   fs.access(paperDir, fs.constants.F_OK, (err) => {
